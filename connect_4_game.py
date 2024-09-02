@@ -7,7 +7,7 @@ import math
 BLUE = (0,0,255)
 BLACK = (0,0,0)
 RED = (255,0,0)
-YELLOW = (255,255,0)
+GREEN = (0,255,0)
 
 ROW_COUNT = 6
 COLUMN_COUNT = 7
@@ -104,7 +104,7 @@ def score_position(board, piece):
 			window = col_array[r:r+WINDOW_LENGTH]
 			score += evaluate_window(window, piece)
 
-	## Score posiive sloped diagonal
+	## Score positive sloped diagonal
 	for r in range(ROW_COUNT-3):
 		for c in range(COLUMN_COUNT-3):
 			window = [board[r+i][c+i] for i in range(WINDOW_LENGTH)]
@@ -199,7 +199,7 @@ def draw_board(board):
 			if board[r][c] == PLAYER_PIECE:
 				pygame.draw.circle(screen, RED, (int(c*SQUARESIZE+SQUARESIZE/2), height-int(r*SQUARESIZE+SQUARESIZE/2)), RADIUS)
 			elif board[r][c] == AI_PIECE: 
-				pygame.draw.circle(screen, YELLOW, (int(c*SQUARESIZE+SQUARESIZE/2), height-int(r*SQUARESIZE+SQUARESIZE/2)), RADIUS)
+				pygame.draw.circle(screen, GREEN, (int(c*SQUARESIZE+SQUARESIZE/2), height-int(r*SQUARESIZE+SQUARESIZE/2)), RADIUS)
 	pygame.display.update()
 
 board = create_board()
@@ -276,7 +276,7 @@ while not game_over:
 			drop_piece(board, row, col, AI_PIECE)
 
 			if winning_move(board, AI_PIECE):
-				label = myfont.render("Player 2 wins!!", 1, YELLOW)
+				label = myfont.render("Player 2 wins!!", 1, GREEN)
 				screen.blit(label, (40,10))
 				game_over = True
 
